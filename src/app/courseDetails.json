@@ -1,0 +1,8 @@
+{
+    "courseDetails" : [     
+        {"value":"01","label" : "Course 1","selected" : false},
+        {"value":"02","label" : "Course 2","selected" : false},
+        {"value":"03","label" : "Course 3","selected" : false},
+        {"value":"04","label" : "Course 4","selected" : false}
+    ]
+}

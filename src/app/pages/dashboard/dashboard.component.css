@@ -1,0 +1,11 @@
+label.control-label{
+    text-align: left;
+}
+
+label.control-label span{
+    display: inline-block;
+}
+input,textarea,select{
+    border-color: #3ac3e2;
+    border-radius: 9px;
+}

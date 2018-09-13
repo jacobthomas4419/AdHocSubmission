@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-xs-5 col-xs-offset-3">
+    <form class="form-horizontal" name="dashboardForm" #dashboardForm="ngForm">
+        <div class="form-group">
+            <label for="notificationHeadline" class="control-label col-xs-3">Headline <span>&#60;48 characters</span></label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="notificationHeadline" [(ngModel)]="dashboard.notificationHeadline" name="notificationHeadline"  
+                 maxlength="48" required="true" #notificationHeadline="ngModel">
+                 <div [hidden]="notificationHeadline.valid || !notificationHeadline.touched" class="alert alert-danger">
+                        Headline is required
+                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notificationBody" class="control-label col-xs-3">Body Copy <span>&#60;168 characters</span></label>
+            <div class="col-xs-9">
+                <textarea rows="3" class="form-control" id="notificationBody" maxlength="168" [(ngModel)]="dashboard.notificationBody"
+                 name="notificationBody" required #notificationBody="ngModel"></textarea>
+                <div [hidden]="notificationBody.valid || !notificationBody.touched" class="alert alert-danger">
+                        Headline is required
+                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="notificationDate" class="control-label col-xs-3">Date</label>
+            <div class="col-xs-9">
+                <input type="date" class="form-control" id="notificationDate" [(ngModel)]="dashboard.notificationDate"
+                 name="notificationDate" required #notificationDate="ngModel">
+                 <div [hidden]="notificationDate.valid || !notificationDate.touched" class="alert alert-danger">
+                        Date is required
+                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-xs-3" for="dayPart">Daypart</label>
+          <div class="col-xs-9">
+              <select class="form-control" id="dayPart" [(ngModel)]="dashboard.dayPart" name="dayPart" required #dayPart="ngModel">
+                <option disabled hidden [value]="selectUndefinedOptionValue">-- select --</option>  
+                <option *ngFor="let day of dayPartValues" [value]="day.value">{{day.label}}</option>
+              </select>
+              <div [hidden]="dayPart.valid || !dayPart.touched" class="alert alert-danger">
+                     Daypart is required
+              </div>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="items">
+          <label class="control-label col-xs-3" for="course">Course</label>
+          <div class="col-xs-9">
+              <select class="form-control" id="course" [(ngModel)]="dashboard.course" name="dashboardCourse" required #course="ngModel">
+                  <option disabled hidden [value]="selectUndefinedOptionValue">-- select --</option>
+                  <option *ngFor="let item of items" [value]="item.value">{{item.label}}</option>
+              </select>
+              <div [hidden]="course.valid || !course.touched" class="alert alert-danger">
+                     Course is required
+              </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="text-center">
+            <button type="button" class="btn btn-info" (click)="navigateTo()" [disabled]="!dashboardForm.form.valid">Next</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>

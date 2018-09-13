@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-xs-5 col-xs-offset-3">
+            <div class="alert alert-success text-center" [hidden]="dataSaved">
+                    <strong>Congrats!</strong> Your data is saved
+                </div>
+        <form class="form-horizontal" name="adhocSubmit" #adhocSubmit="ngForm">
+            <div class="form-group" [hidden]="toplineTakeAway">
+                <label for="toplineTakeAway" class="control-label col-xs-3">Topline Takeaway <span>&#60;48 characters</span></label>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" id="toplineTakeAway" #toplineTakeAwayValue="ngModel"
+                    maxlength="48" [(ngModel)]='adhoc.toplineTakeAway' name="toplineTakeAway" [required]="!toplineTakeAway">
+                    <div [hidden]="toplineTakeAwayValue.valid || !toplineTakeAwayValue.touched" class="alert alert-danger">
+                    Topline Takeaway is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [hidden]="deeperDrive">
+                <label for="deeperDrive" class="control-label col-xs-3">Deeper Drive <span>&#60;168 characters</span></label>
+                <div class="col-xs-9">
+                    <textarea rows="3" class="form-control" id="deeperDrive" maxlength="168" [(ngModel)]='adhoc.deeperDrive' 
+                    name="deeperDrive" [required]="!deeperDrive" #deeperDriveValue="ngModel"></textarea>
+                    <div [hidden]="deeperDriveValue.valid || !deeperDriveValue.touched" class="alert alert-danger">
+                        Deeper Drive is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [hidden]="webpageURL">
+                <label for="webpageURL" class="control-label col-xs-3">URL to Video or Webpage</label>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control" id="webpageURL" [(ngModel)]='adhoc.webpageURL'
+                    name="webpageURL" [required]="!webpageURL" #webpageURLValue="ngModel">
+                    <div [hidden]="webpageURLValue.valid || !webpageURLValue.touched" class="alert alert-danger">
+                    URL to Video or Webpage is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [hidden]="dayPart">
+            <label class="control-label col-xs-3" for="dayPart">Daypart</label>
+            <div class="col-xs-9">
+                <select class="form-control" id="dayPart" [(ngModel)]='adhoc.dayPart' name="dayPart" [required]="!dayPart" 
+                    #dayPartValue="ngModel">
+                    <option disabled hidden [value]="selectUndefinedOptionValue">-- select --</option>  
+                    <option *ngFor="let day of dayPartValues" [value]="day.value">{{day.label}}</option>
+                </select>
+                <div [hidden]="dayPartValue.valid || !dayPartValue.touched" class="alert alert-danger">
+                    Daypart is required
+                </div>
+            </div>
+            </div>
+            <div class="form-group" [hidden]="course">
+            <label class="control-label col-xs-3" for="course">Course</label>
+            <div class="col-xs-9">
+                <select class="form-control" id="course" [(ngModel)]='adhoc.confirmCourse' name="confirmCourse" 
+                    [required]="!course" #courseValue="ngModel">
+                    <option disabled hidden [value]="selectUndefinedOptionValue">-- select --</option>
+                    <option *ngFor="let courses of courseValues" [value]="courses.value">{{courses.label}}</option>
+                </select>
+                <div [hidden]="courseValue.valid || !courseValue.touched" class="alert alert-danger">
+                    Course is required
+                </div>
+            </div>
+        </div>
+        <div class="form-group" [hidden]="firstQuestion">
+            <label for="firstQuestion" class="control-label col-xs-3">Question 1</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="firstQuestion" [(ngModel)]='adhoc.firstQuestion' #firstQuestionValue="ngModel"
+                    name="firstQuestion" [required]="!firstQuestion">
+                    <div [hidden]="firstQuestionValue.valid || !firstQuestionValue.touched" class="alert alert-danger">
+                        Course is required
+                    </div>
+            </div>
+        </div>
+        <div class="form-group" [hidden]="secondQuestion">
+            <label for="secondQuestion" class="control-label col-xs-3">Question 2</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="secondQuestion" [(ngModel)]='adhoc.secondQuestion' #secondQuestionValue="ngModel"
+                    name="secondQuestion" [required]="!secondQuestion">
+                    <div [hidden]="secondQuestionValue.valid || !secondQuestionValue.touched" class="alert alert-danger">
+                        Course is required
+                    </div>
+            </div>
+        </div>
+        <div class="form-group" [hidden]="thirdQuestion">
+            <label for="thirdQuestion" class="control-label col-xs-3">Question 3</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="thirdQuestion" [(ngModel)]='adhoc.thirdQuestion' #thirdQuestionValue="ngModel"
+                    name="thirdQuestion" [required]="!thirdQuestion">
+                    <div [hidden]="thirdQuestionValue.valid || !thirdQuestionValue.touched" class="alert alert-danger">
+                        Course is required
+                    </div>
+            </div>
+        </div>
+        <div class="form-group" [hidden]="fourthQuestion">
+            <label for="fourthQuestion" class="control-label col-xs-3">Question 4</label>
+            <div class="col-xs-9">
+                <input type="text" class="form-control" id="fourthQuestion" [(ngModel)]='adhoc.fourthQuestion' #fourthQuestionValue="ngModel"
+                    name="fourthQuestion" [required]="!fourthQuestion">
+                    <div [hidden]="fourthQuestionValue.valid || !fourthQuestionValue.touched" class="alert alert-danger">
+                        Course is required
+                    </div>
+            </div>
+        </div>
+            <div class="col-xs-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-info" (click)="dashboardHandler()">Back To Dashboard</button>                  
+                <button type="button" class="btn btn-info" (click)="submitHandler()" [disabled]="!adhocSubmit.form.valid">Submit</button>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
